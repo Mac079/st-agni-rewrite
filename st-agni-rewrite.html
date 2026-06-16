@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Agni About Page Rewrite by The Silk Pen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --white:#ffffff;--off:#faf9f7;--light:#f2f0ec;--stone:#e0ddd8;
+      --warm:#c8c4bc;--muted:#8a8880;--bark:#5a5850;--ink:#1a1a18;
+      --border:#e4e2de;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--white);color:var(--ink);font-family:'Jost',sans-serif;font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    .top-bar{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;font-size:10px;font-weight:300;letter-spacing:.22em;padding:9px;text-transform:uppercase}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:54px;border-bottom:1px solid var(--border);background:var(--white);position:sticky;top:0;z-index:100}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.45;transition:opacity .2s}
+    .nav-links a:hover{opacity:1}
+    .nav-logo{font-family:'Cormorant',serif;font-size:19px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);position:absolute;left:50%;transform:translateX(-50%)}
+    .nav-right{display:flex;gap:24px;list-style:none}
+    .nav-right a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.4}
+
+    /* OPENING - full bleed, maximum restraint */
+    .opening{min-height:90vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .opening-visual{background:var(--ink);position:relative;overflow:hidden}
+    .opening-visual-inner{position:absolute;inset:0;background:linear-gradient(150deg,#2a2a28 0%,#1a1a18 100%)}
+    .opening-visual-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 35% 60%,rgba(200,196,188,.06) 0%,transparent 55%)}
+    .opening-visual-caption{position:absolute;bottom:36px;left:36px;font-family:'Cormorant',serif;font-style:italic;font-size:13px;font-weight:300;color:rgba(255,255,255,.25);letter-spacing:.06em}
+    .opening-content{display:flex;flex-direction:column;justify-content:center;padding:80px 72px 80px 56px;border-left:1px solid var(--border)}
+    .opening-overline{font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--warm);margin-bottom:24px}
+    .opening-headline{font-family:'Cormorant',serif;font-size:clamp(42px,5vw,68px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:30px;letter-spacing:.01em}
+    .opening-headline em{font-style:italic;color:var(--bark)}
+    .opening-body{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;line-height:1.88;color:var(--bark);max-width:min(460px,100%);margin-bottom:44px}
+    .opening-cta{display:flex;gap:24px;align-items:center}
+    .btn-ink{background:var(--ink);color:var(--white);font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s}
+    .btn-ink:hover{background:#333}
+    .btn-text{font-size:10px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px;opacity:.4}
+
+    /* LARA QUOTE */
+    .lara-quote{background:var(--light);padding:88px 80px;display:grid;grid-template-columns:200px 1fr;gap:80px;align-items:center;border-bottom:1px solid var(--border)}
+    .lara-left .lara-eyebrow{font-size:10px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .lara-left .lara-name{font-family:'Cormorant',serif;font-size:18px;font-weight:300;color:var(--ink);margin-bottom:4px;letter-spacing:.04em}
+    .lara-left .lara-title{font-size:10px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .lara-quote-text{font-family:'Cormorant',serif;font-size:clamp(22px,2.6vw,34px);font-weight:300;font-style:italic;line-height:1.42;color:var(--ink);padding-left:64px;border-left:1px solid var(--border)}
+
+    /* THE ORIGIN - Nona and the beginning */
+    .origin{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .origin-visual{background:var(--stone);position:relative;min-height:560px;overflow:hidden}
+    .origin-visual-inner{position:absolute;inset:0;background:linear-gradient(145deg,#e0ddd8 0%,#c8c4bc 100%);display:flex;align-items:flex-end;padding:40px}
+    .origin-visual-word{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(64px,9vw,120px);font-weight:300;color:rgba(26,26,24,.08);line-height:1;letter-spacing:.02em}
+    .origin-content{padding:80px 72px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--border)}
+    .section-label{font-size:10px;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+    .section-headline{font-family:'Cormorant',serif;font-size:clamp(28px,3vw,42px);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:28px}
+    .section-headline em{font-style:italic}
+    .section-body{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;line-height:1.9;color:var(--bark);margin-bottom:20px}
+    .section-body strong{font-weight:400;color:var(--ink)}
+
+    /* PROCESS - dark, three columns */
+    .process-section{background:var(--ink);display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,.06)}
+    .process-item{padding:64px 48px;border-right:1px solid rgba(255,255,255,.07)}
+    .process-item:last-child{border-right:none}
+    .process-num{font-size:10px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:20px}
+    .process-title{font-family:'Cormorant',serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;color:var(--white);margin-bottom:16px;letter-spacing:.01em;line-height:1.15}
+    .process-title em{font-style:italic}
+    .process-body{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;font-weight:300;line-height:1.8;color:rgba(255,255,255,.4)}
+
+    /* NONA SECTION */
+    .nona-section{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .nona-content{padding:80px 72px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
+    .nona-visual{background:var(--light);position:relative;min-height:520px}
+    .nona-visual-inner{position:absolute;inset:0;background:linear-gradient(145deg,#f2f0ec 0%,#e0ddd8 100%);display:flex;align-items:flex-end;padding:36px}
+    .nona-visual-tag{font-family:'Cormorant',serif;font-style:italic;font-size:13px;font-weight:300;color:rgba(26,26,24,.3)}
+
+    /* PHILOSOPHY STRIP */
+    .philosophy-strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+    .phil-item{padding:56px 44px;border-right:1px solid var(--border)}
+    .phil-item:last-child{border-right:none}
+    .phil-bar{width:20px;height:1px;background:var(--ink);margin-bottom:20px;opacity:.3}
+    .phil-title{font-family:'Cormorant',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:12px}
+    .phil-body{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:300;line-height:1.8;color:var(--bark)}
+
+    /* STATS */
+    .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+    .stat-item{padding:48px 36px;border-right:1px solid var(--border);text-align:center}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-family:'Cormorant',serif;font-size:clamp(32px,3.5vw,48px);font-weight:300;color:var(--ink);line-height:1;margin-bottom:10px;letter-spacing:-.01em}
+    .stat-label{font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .stat-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--bark)}
+
+    /* NEWSLETTER */
+    .newsletter{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+    .newsletter-left{padding:88px 72px;background:var(--off);border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
+    .newsletter-label{font-size:10px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+    .newsletter-headline{font-family:'Cormorant',serif;font-size:clamp(26px,3vw,38px);font-weight:300;line-height:1.12;color:var(--ink);margin-bottom:18px}
+    .newsletter-headline em{font-style:italic}
+    .newsletter-body{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;font-weight:300;line-height:1.88;color:var(--bark);max-width:380px}
+    .newsletter-right{padding:88px 72px;display:flex;flex-direction:column;justify-content:center}
+    .newsletter-form{display:flex;flex-direction:column;gap:10px}
+    .newsletter-form input{background:var(--light);border:1px solid var(--border);color:var(--ink);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;padding:15px 18px;outline:none;transition:border-color .2s}
+    .newsletter-form input::placeholder{color:var(--warm)}
+    .newsletter-form input:focus{border-color:var(--ink)}
+    .newsletter-form button{background:var(--ink);color:var(--white);font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:15px;border:none;cursor:pointer}
+    .newsletter-note{font-size:11px;font-weight:300;color:var(--warm);line-height:1.6;letter-spacing:.03em}
+
+    /* COPY NOTES */
+    .copy-notes{padding:80px;border-top:2px solid var(--ink);background:var(--off)}
+    .notes-header{display:flex;align-items:baseline;gap:16px;margin-bottom:52px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+    .notes-badge{font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+    .notes-title{font-family:'Cormorant',serif;font-size:24px;font-weight:300;color:var(--ink)}
+    .notes-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);margin-left:auto}
+    .notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 64px}
+    .note-item h4{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    .note-item p{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;line-height:1.9;color:var(--bark)}
+
+    /* BEFORE AFTER */
+    .before-after{padding:0 80px 80px;background:var(--off)}
+    .ba-label{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;padding-top:4px}
+    .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .ba-card{padding:28px 32px;border:1px solid var(--border);background:var(--white)}
+    .ba-tag{display:inline-block;font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;margin-bottom:16px}
+    .ba-tag.before{background:var(--light);color:var(--muted)}
+    .ba-tag.after{background:var(--ink);color:var(--white)}
+    .ba-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:300;line-height:1.8;color:var(--ink)}
+    .ba-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;font-weight:300;color:var(--muted);line-height:1.7;letter-spacing:.03em}
+
+    /* FOOTER */
+    .footer-bar{background:var(--ink);padding:22px 80px;display:flex;align-items:center;justify-content:space-between}
+    .footer-brand{font-family:'Cormorant',serif;font-style:italic;font-size:17px;font-weight:300;color:rgba(255,255,255,.85)}
+    .footer-note{font-size:10px;font-weight:300;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+    .footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+    .footer-email{font-size:11px;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.05em}
+    .footer-website{font-size:11px;font-weight:300;color:rgba(255,255,255,.3);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:1px;letter-spacing:.05em;transition:color .2s}
+    .footer-website:hover{color:rgba(255,255,255,.65)}
+
+    @media(max-width:960px){
+      nav{padding:0 20px}.nav-links{display:none}.nav-logo{position:static;transform:none}
+      .opening{grid-template-columns:1fr}.opening-visual{min-height:55vw}.opening-content{padding:48px 24px;border-left:none;border-top:1px solid var(--border)}
+      .lara-quote{grid-template-columns:1fr;padding:56px 24px;gap:32px}.lara-quote-text{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:28px}
+      .origin{grid-template-columns:1fr}.origin-visual{min-height:55vw}.origin-content{padding:48px 24px;border-left:none;border-top:1px solid var(--border)}
+      .process-section{grid-template-columns:1fr}.process-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}.process-item:last-child{border-bottom:none}
+      .nona-section{grid-template-columns:1fr}.nona-content{padding:48px 24px;border-right:none;border-bottom:1px solid var(--border)}.nona-visual{min-height:55vw}
+      .philosophy-strip{grid-template-columns:1fr}.phil-item{border-right:none;border-bottom:1px solid var(--border)}.phil-item:last-child{border-bottom:none}
+      .stats-strip{grid-template-columns:1fr 1fr}.stat-item:nth-child(2){border-right:none}.stat-item:nth-child(3){border-top:1px solid var(--border)}
+      .newsletter{grid-template-columns:1fr}.newsletter-left{padding:56px 24px;border-right:none;border-bottom:1px solid var(--border)}.newsletter-right{padding:56px 24px}
+      .copy-notes{padding:48px 24px}.notes-grid{grid-template-columns:1fr;gap:32px}
+      .before-after{padding:0 24px 48px}.ba-grid{grid-template-columns:1fr}
+      .footer-bar{padding:20px 24px;flex-direction:column;gap:10px;text-align:center}.footer-contact{align-items:center}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">Free shipping on Australian orders over $250</div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Ready to Wear</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Objects</a></li>
+    </ul>
+    <div class="nav-logo">St. Agni</div>
+    <ul class="nav-right">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Bag</a></li>
+    </ul>
+  </nav>
+
+  <section class="opening">
+    <div class="opening-visual">
+      <div class="opening-visual-inner"></div>
+      <div class="opening-visual-overlay"></div>
+      <div class="opening-visual-caption">Byron Bay Studio, 2026</div>
+    </div>
+    <div class="opening-content">
+      <div class="opening-overline">The Studio</div>
+      <h1 class="opening-headline">
+        Less, always.<br>
+        <em>Made to last<br>longer than a season.</em>
+      </h1>
+      <p class="opening-body">
+        Lara and Matt Fells started St. Agni in Byron Bay in 2014 because the opportunities in the region were limited and they had conversations to fill. They were newlyweds who wanted to open a cafe. What they built instead was something quieter and more lasting. A studio that makes clothes for the woman who has already decided what she values.
+      </p>
+      <div class="opening-cta">
+        <a href="#" class="btn-ink">Shop the Collection</a>
+        <a href="#" class="btn-text">Our Ethos</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="lara-quote">
+    <div class="lara-left">
+      <div class="lara-eyebrow">Co-Founder</div>
+      <div class="lara-name">Lara Fells</div>
+      <div class="lara-title">Creative Director, St. Agni</div>
+    </div>
+    <div class="lara-quote-text">
+      "The less is more ethos has been central to our philosophy from day one. For me, it embodies minimalism. Investing in key pieces that can be worn repeatedly, reimagined, and that don't become outdated after a single season."
+    </div>
+  </div>
+
+  <section class="origin">
+    <div class="origin-visual">
+      <div class="origin-visual-inner">
+        <div class="origin-visual-word">Agni</div>
+      </div>
+    </div>
+    <div class="origin-content">
+      <div class="section-label">The Name</div>
+      <h2 class="section-headline">
+        Named after<br>
+        Lara's nona.<br>
+        <em>The original Agni.</em>
+      </h2>
+      <p class="section-body">
+        St. Agni is named after Lara's grandmother. The atlas print in the latest collection is a direct tribute, inspired by a skirt inherited from the woman the brand is named for. That kind of continuity is not marketing. It is how the studio actually works.
+      </p>
+      <p class="section-body">
+        <strong>The brand began as a handwoven leather accessories label</strong>, made by hand in Byron Bay. It evolved into premium ready-to-wear over a decade of deliberate, profitable growth. Five stores. A global online presence. A team of exceptional people. All of it built without outside investment, without chasing trends, without losing what it was in the first place.
+      </p>
+      <p class="section-body">
+        Byron Bay is still home. The studio, the headquarters, the place where Lara wakes up to kookaburras and walks to work. Staying there is not a romantic choice. It is what keeps the brand honest.
+      </p>
+    </div>
+  </section>
+
+  <div class="process-section">
+    <div class="process-item">
+      <div class="process-num">01 / The Beginning</div>
+      <h3 class="process-title">It starts with<br><em>the fabric.</em></h3>
+      <p class="process-body">Always. The design team is tactile first. When you touch and feel the fabric, everything else falls into place. You cannot design the other way around and get to the same result.</p>
+    </div>
+    <div class="process-item">
+      <div class="process-num">02 / The Work</div>
+      <h3 class="process-title">Ease is not<br><em>an accident.</em></h3>
+      <p class="process-body">The nonchalance in every St. Agni piece is constructed. An unexpected seam. A proportion considered from every angle. Fabrication chosen for how it moves, not just how it looks. Effortlessness takes work.</p>
+    </div>
+    <div class="process-item">
+      <div class="process-num">03 / The Standard</div>
+      <h3 class="process-title">Investment pieces<br><em>that earn the word.</em></h3>
+      <p class="process-body">Every piece is designed to be worn repeatedly, reimagined, and never outdated by a single season. That is not a sustainability claim. It is a design standard that has been in place since 2014.</p>
+    </div>
+  </div>
+
+  <section class="nona-section">
+    <div class="nona-content">
+      <div class="section-label">The Philosophy</div>
+      <h2 class="section-headline">
+        Versatility.<br>
+        Longevity.<br>
+        <em>Always less.</em>
+      </h2>
+      <p class="section-body">
+        The less is more philosophy at St. Agni is not an aesthetic position. It is a practice. It shapes what gets made, how much of it gets made, and how every business decision gets evaluated. The studio avoids excess of any kind: in production, in communication, in the collection itself.
+      </p>
+      <p class="section-body">
+        <strong>The collections are built around the idea of a modern uniform.</strong> Pieces that work with each other. That move between contexts without needing to be explained. That sit in a wardrobe for years and keep making sense. Timeless silhouettes, exceptional fabrics, supply chain transparency. Those are the commitments that have been in place since the beginning and have not changed.
+      </p>
+      <p class="section-body">
+        Sustainability is not a term St. Agni uses loosely. The studio has no interest in broad, empty statements. The commitment is to transparency: materials chosen with minimal environmental impact, quality built to last, decisions made as if they matter. Because they do.
+      </p>
+    </div>
+    <div class="nona-visual">
+      <div class="nona-visual-inner">
+        <div class="nona-visual-tag">St. Agni Studio, Byron Bay</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="philosophy-strip">
+    <div class="phil-item">
+      <div class="phil-bar"></div>
+      <div class="phil-title">Less is More</div>
+      <p class="phil-body">From day one. In the collection, in the business, in every decision made. The philosophy is not decorative. It is operational.</p>
+    </div>
+    <div class="phil-item">
+      <div class="phil-bar"></div>
+      <div class="phil-title">Worn Repeatedly</div>
+      <p class="phil-body">Every piece is designed to be reimagined. To make sense next season and the one after. Investment pieces that earn the word.</p>
+    </div>
+    <div class="phil-item">
+      <div class="phil-bar"></div>
+      <div class="phil-title">Transparent Always</div>
+      <p class="phil-body">Supply chain transparency. Material consciousness. No broad claims, no empty statements. The work speaks for itself or it does not speak at all.</p>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">2014</div>
+      <div class="stat-label">Founded</div>
+      <div class="stat-note">Byron Bay. A cafe dream that became something better.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Australian Stores</div>
+      <div class="stat-note">Melbourne, Sydney, Byron Bay, Brisbane. All built without outside investment.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Day 1</div>
+      <div class="stat-label">Profitable</div>
+      <div class="stat-note">Organic growth. No funding. No shortcuts.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Browns</div>
+      <div class="stat-label">Global Stockist</div>
+      <div class="stat-note">Alongside the most considered fashion houses in the world.</div>
+    </div>
+  </div>
+
+  <section class="newsletter">
+    <div class="newsletter-left">
+      <div class="newsletter-label">Stay close to St. Agni</div>
+      <h2 class="newsletter-headline">
+        New arrivals.<br>
+        <em>The thinking behind them.</em>
+      </h2>
+      <p class="newsletter-body">
+        New collections, the materials behind each season, and notes from the studio on what we are working on next. Written for the women who want more than a new arrival email. For the ones who want to understand what they are buying and why it was made.
+      </p>
+    </div>
+    <div class="newsletter-right">
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address">
+        <button type="submit">Join the Studio</button>
+        <p class="newsletter-note">New arrivals and studio notes. No offers for the sake of it. Unsubscribe whenever you like.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="copy-notes">
+    <div class="notes-header">
+      <div class="notes-badge">The Silk Pen</div>
+      <div class="notes-title">Copywriter's Notes</div>
+      <div class="notes-sub">What changed and why</div>
+    </div>
+    <div class="notes-grid">
+      <div class="note-item">
+        <h4>The Opening</h4>
+        <p>The live About page opens with: "St. Agni is an independent, Australian design studio, founded in Byron Bay. The studio explores contemporary wardrobing through considered design and precise tailoring." That is accurate but written at a distance, in the third person, describing the brand from the outside. Lara told Cultured Magazine that when they started the brand, their aspirations were modest, and they were content as long as they were not losing money. That sentence about modesty and organic growth is more interesting and more human than anything on the current About page. The rewrite leads with the real founding story: two newlyweds who wanted to open a cafe and built something quieter and more lasting instead.</p>
+      </div>
+      <div class="note-item">
+        <h4>The Nona Detail</h4>
+        <p>St. Agni is named after Lara's grandmother, Agni. The atlas print in the current collection is directly inspired by a skirt inherited from her. That detail is extraordinary: the brand's own grandmother is woven into the latest collection and this story appears nowhere on the website. It is in a Cultured Mag interview. The rewrite gives it the prominence it deserves because it is the most specific and human thing about the brand. A grandmother's name. A skirt passed down. That is the story that makes a customer feel something before she sees the clothes.</p>
+      </div>
+      <div class="note-item">
+        <h4>The Process Section</h4>
+        <p>Lara told Cultured Magazine: "Our design team is very tactile. When you touch and feel the fabrics, everything starts to fall into place. It's challenging to design first and then find the perfect fabric." That is the St. Agni design process described precisely. It is not on the website. The rewrite surfaces it in the process section because it is the most specific and honest thing said about how these clothes are made. Customers who understand why a brand works the way it does are more likely to trust the result.</p>
+      </div>
+      <div class="note-item">
+        <h4>The Newsletter</h4>
+        <p>"Join to receive exclusive offers, plus 15% off your first order." That is the current newsletter copy for a brand stocked at Browns, with five Australian stores, built from nothing to something over a decade of profitable, considered growth. A 15% discount hook is the most generic possible offer and one that directly contradicts the less is more philosophy St. Agni has lived by since 2014. The rewrite positions the newsletter as studio notes for the women who want to understand what they are buying. No discount. No offer. Just the work and the thinking behind it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="before-after">
+    <div class="ba-label">Before and After: The Opening</div>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <span class="ba-tag before">Live copy</span>
+        <p class="ba-text">"St. Agni is an independent, Australian design studio, founded in Byron Bay. The studio explores contemporary wardrobing through considered design and precise tailoring, that speaks to a minimalist aesthetic."</p>
+        <div class="ba-note">Accurate but written from the outside, as if describing a brand to someone who has never heard of it. Third person throughout. No founder, no story, no human moment. Could describe a dozen other Byron Bay studios.</div>
+      </div>
+      <div class="ba-card">
+        <span class="ba-tag after">Rewrite</span>
+        <p class="ba-text">"Lara and Matt Fells started St. Agni in Byron Bay in 2014 because the opportunities in the region were limited and they had conversations to fill. They were newlyweds who wanted to open a cafe. What they built instead was something quieter and more lasting."</p>
+        <div class="ba-note">Opens with the real founding story. Names the founders. Grounds the brand in a specific, human moment. Makes the reader feel the origin before she understands the philosophy. Could only be St. Agni.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-brand">The Silk Pen</div>
+    <div class="footer-note">Copy sample prepared for St. Agni</div>
+    <div class="footer-contact">
+      <a href="mailto:hello@thesilkpen.in" class="footer-email">hello@thesilkpen.in</a>
+      <a href="https://thesilkpen.in" target="_blank" class="footer-website">thesilkpen.in</a>
+    </div>
+  </div>
+
+</body>
+</html>
